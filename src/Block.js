@@ -8,8 +8,8 @@ const Block = (props) => {
   const classes = StyleSheet.create(getStyles(props))
   // Load the helper function that will join Atomic CSS classes with Aphrodite:
   const joinClasses = props.joinClasses
-  // Destructure the HTML embed code from the props:
-  const { embedTweetHTML, embedInstagramHTML } = props.data
+  // Destructure the HTML embed code from the data props:
+  const [embedTweetHTML, embedInstagramHTML] = props.data
 
   // React's Effect Hook (useEffect) will run code when the Block is rendered:
   useEffect(() => {
@@ -32,8 +32,7 @@ const Block = (props) => {
   // Passing [] as useEffect's second parameter will run the code just once.
 
   // Combine the Tweet and the Instagram Post into a single HTML string:
-  //const embedHTML = embedTweetHTML + embedInstagramHTML
-  const embedHTML = props.data.html
+  const embedHTML = embedTweetHTML + embedInstagramHTML
   // For HTML markup, React requires an object with the __html property:
   const outputAsMarkup = { __html: embedHTML }
 

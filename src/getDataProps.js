@@ -23,11 +23,24 @@ export const getDataProps = (utils, props) => {
     }))(0)
   // Source: https://gist.github.com/gf3/132080/110d1b68d7328d7bfe7e36617f7df85679a08968#gistcomment-2090652
 
-  return fetchJSONP(
+  // Use JSONP for Twitter: Twitter's API does not allow CORS requests.
+  const twitterPromise = fetchJSONP(
     `https://publish.twitter.com/oembed?url=${props.embedTweetURL}`
   )
     .then((res) => res.json())
     .catch((e) => console.log(`Problem with fetching Twitter result`))
+
+  // Use JSON for Instagram; there are no CORS problems with Instagram's API.
+  const instagramPromise = fetch(
+    `https://api.instagram.com/oembed?url=${props.embedInstagramURL}`
+  )
+    .then((res) => res.json())
+    .catch((e) => console.log(`Error when fetching Instagram Post: ${e}`))
+
+  return Promise.all([twitterPromise, instagramPromise]).then((values) => [
+    values[0].html,
+    values[1].html,
+  ])
 
   /* 
 
