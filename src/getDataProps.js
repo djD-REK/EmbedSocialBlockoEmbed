@@ -1,7 +1,13 @@
+/*import { fetchPonyfill } from "fetch-ponyfill"
+const { Response } = fetchPonyfill({ Promise: Promise })*/
+// The npm package fetch-ponyfill must be installed using
+// npm install --save fetch-ponyfill
+// in order to get access to the Response object for the JSONP code below.
+import { Response } from "node-fetch"
+
 export const getDataProps = (utils, props) => {
   // Helper function to use JSONP (JSON with Padding) to bypass cross-origin
   // request sharing restrictions (CORS restrictions) when querying APIs:
-  /*
   const fetchJSONP = ((unique) => (url) =>
     new Promise((rs) => {
       const script = document.createElement("script")
@@ -31,8 +37,7 @@ export const getDataProps = (utils, props) => {
     .then((res) => res.json())
     .catch((e) => console.log(`Problem with fetching Twitter result: ${e}`))
 
-  */
-
+  /*
   // Use JSON for Instagram; there are no CORS problems with Instagram's API:
   const twitterPromise = utils.client
     .request(
@@ -44,8 +49,9 @@ export const getDataProps = (utils, props) => {
       `https://cors-anywhere.herokuapp.com/` +
         `https://publish.twitter.com/oembed?url=${props.embedTweetURL}`
     )
-    .then((res) => res.json())
+    .then((res) => res.jsonp())
     .catch((e) => console.log(`Error when fetching Instagram Post: ${e}`))
+*/
 
   // Use JSON for Instagram; there are no CORS problems with Instagram's API:
   const instagramPromise = utils.client
