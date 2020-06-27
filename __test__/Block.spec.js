@@ -7,7 +7,7 @@ import {
 import { block as Block, defaultConfig } from "../src"
 
 let props
-describe("The Block", () => {
+describe.skip("The Block", () => {
   beforeEach(() => {
     props = {
       data: {},
