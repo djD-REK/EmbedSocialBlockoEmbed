@@ -10,10 +10,7 @@
   },
   "author": "Volusion, LLC",
   "license": "MIT",
-  "dependencies": {
-    "fetch-ponyfill": "^6.1.1",
-    "node-fetch": "^2.6.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@volusion/element-block-scripts": "^2.2.3",
     "@volusion/element-block-utils": "^2.0.0",
